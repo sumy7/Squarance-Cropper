@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Squarance</title>
+
+    <script src="squarance.js"></script>
+</head>
+
+<body>
+    <canvas height="600" width="800" id="canvas"></canvas>
+    <div id='preivew'></div>
+    <script>
+        var src = 'https://www.dujin.org/sys/bing/1920.php';
+        var canvas = document.getElementById('canvas');
+        var squarance = new Squarance(src, canvas);
+        var previewdom = document.getElementById('preivew');
+        previewdom.style.backgroundImage = 'url('+src+')';
+        previewdom.style.backgroundRepeat = 'no-repeat';
+        function loop() {
+            setTimeout(loop, 100);
+            previewdom.style.height = squarance.getCropperHeight() + 'px';
+            previewdom.style.width = squarance.getCropperWidth() + 'px';
+            previewdom.style.backgroundPositionX = (-squarance.getCropperStartPixel()[0]) + 'px';
+            previewdom.style.backgroundPositionY = (-squarance.getCropperStartPixel()[1]) + 'px';
+        }
+        setTimeout(loop, 100);
+    </script>
+</body>
+
+</html>
